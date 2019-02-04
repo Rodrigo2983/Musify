@@ -18,7 +18,7 @@
 
   <div class="field">
     <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
+    <%= form.select :name, User.pluck(:name, :id), prompt: 'seleccione un usuario', value:"0"  %>
   </div>
 
   <div class="actions">
