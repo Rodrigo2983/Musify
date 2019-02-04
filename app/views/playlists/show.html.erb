@@ -1,14 +1,41 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
+<%#creacion de botones %>
+  <strong>Name:</strong>     
   <%= @playlist.name %>
 </p>
-
+<ol class="list-group">
+  <% @playlist_songs.each do |song| %> 
+  <li class="list-group-item">
+    <%= song.artist %> | <%= song.name %>
+     <%= link_to playlist_song_path(@playlist, song), 
+     data: {method: :delete, confirm: 'estas seguro'} do %>
+     <span class="badge badge-danger">Danger</span>
+      <% end %>
+     
+  </li>
+<% end %>
+</ol>
 <p>
+<%# termino de creacion de botones y sintasis %>
   <strong>User:</strong>
   <%= @playlist.user.name %>
 </p>
 
 <%= link_to 'Edit', edit_playlist_path(@playlist) %> |
 <%= link_to 'Back', playlists_path %>
+
+<h4>Ingrese una canciòn</h4>
+
+<%= form_with(model:[@playlist, @song], local: true) do |f|%>
+<%= f.label :artist %>
+<%= f.text_field :artist %>
+<%= f.label :name %>
+<%= f.text_field :name %>
+<%= f.submit %>
+<% end %>
+
+
+
+
