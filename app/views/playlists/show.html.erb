@@ -11,14 +11,22 @@
     <%= song.artist %> | <%= song.name %>
      <%= link_to playlist_song_path(@playlist, song), 
      data: {method: :delete, confirm: 'estas seguro'} do %>
-     <span class="badge badge-danger">Danger</span>
+     <span class="badge badge-danger">Borrar</span>
       <% end %>
-     
+     <% if song.favorite %>
+        <p>*</p>
+        <% else %>
+        <%= link_to set_favorite_playlist_song_path(@playlist, song), 
+        method: :patch do %>
+        <span class="badge badge-warning">Marcar como favorito</span>
+        <% end %>    
+     <% end %>  
   </li>
 <% end %>
+
 </ol>
 <p>
-<%# termino de creacion de botones y sintasis %>
+<%# termino de creacion de botones y sintaxis %>
   <strong>User:</strong>
   <%= @playlist.user.name %>
 </p>

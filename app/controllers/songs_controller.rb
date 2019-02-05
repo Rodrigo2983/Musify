@@ -14,6 +14,14 @@ class SongsController < ApplicationController
         redirect_to song.playlist, notice: 'La cancion a sido eliminda'
     end
     # controllador para elimir una cancion 
+
+    def set_favorite 
+        song =Song.find(params[:id])
+        song.favorite = true
+        song.save
+        redirect_to song.playlist, notice: 'cancion favorita' 
+
+    end
     
     private #el metodo private solo puede ser usado dentro de la clase , es parte la arquitectura 
 
